@@ -1,6 +1,6 @@
 {
-    "name": "wyrihaximus/react-http-middleware-webroot-preload",
-    "description": "react/http middleware static webroot serving",
+    "name": "wyrihaximus/react-http-middleware-rewrite",
+    "description": "A internal path rewrite middleware for react/http",
     "license": "MIT",
     "authors": [
         {
