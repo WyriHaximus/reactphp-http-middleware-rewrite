@@ -1,11 +1,11 @@
 # A internal path rewrite middleware for react/http
 
-[![Build Status](https://travis-ci.org/WyriHaximus/reactphp-http-middleware-rewrite.svg?branch=master)](https://travis-ci.org/WyriHaximus/reactphp-http-middleware-rewrite)
+[![Build Status](https://travis-ci.com/WyriHaximus/reactphp-http-middleware-rewrite.svg?branch=master)](https://travis-ci.com/WyriHaximus/reactphp-http-middleware-rewrite)
 [![Latest Stable Version](https://poser.pugx.org/WyriHaximus/react-http-middleware-rewrite/v/stable.png)](https://packagist.org/packages/WyriHaximus/react-http-middleware-rewrite)
 [![Total Downloads](https://poser.pugx.org/WyriHaximus/react-http-middleware-rewrite/downloads.png)](https://packagist.org/packages/WyriHaximus/react-http-middleware-rewrite)
 [![Code Coverage](https://scrutinizer-ci.com/g/WyriHaximus/reactphp-http-middleware-rewrite/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/WyriHaximus/reactphp-http-middleware-rewrite/?branch=master)
 [![License](https://poser.pugx.org/WyriHaximus/react-http-middleware-rewrite/license.png)](https://packagist.org/packages/WyriHaximus/react-http-middleware-rewrite)
-[![PHP 7 ready](http://php7ready.timesplinter.ch/WyriHaximus/reactphp-http-middleware-rewrite/badge.svg)](https://travis-ci.org/WyriHaximus/reactphp-http-middleware-rewrite)
+[![PHP 7 ready](http://php7ready.timesplinter.ch/WyriHaximus/reactphp-http-middleware-rewrite/badge.svg)](https://travis-ci.com/WyriHaximus/reactphp-http-middleware-rewrite)
 
 # Install
 
