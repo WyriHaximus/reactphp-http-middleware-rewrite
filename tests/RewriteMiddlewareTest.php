@@ -7,6 +7,9 @@ use Psr\Http\Message\ServerRequestInterface;
 use React\Http\Io\ServerRequest;
 use WyriHaximus\React\Http\Middleware\RewriteMiddleware;
 
+/**
+ * @internal
+ */
 final class RewriteMiddlewareTest extends TestCase
 {
     public function provideRewrites()
@@ -31,10 +34,10 @@ final class RewriteMiddlewareTest extends TestCase
     /**
      * @dataProvider provideRewrites
      */
-    public function testRewrite(array $rewrites, string $path, string $expectedPath)
+    public function testRewrite(array $rewrites, string $path, string $expectedPath): void
     {
         $passedPath = '';
-        (new RewriteMiddleware($rewrites))(new ServerRequest('GET', $path), function (ServerRequestInterface $request) use (&$passedPath) {
+        (new RewriteMiddleware($rewrites))(new ServerRequest('GET', $path), function (ServerRequestInterface $request) use (&$passedPath): void {
             $passedPath = $request->getUri()->getPath();
         });
 
