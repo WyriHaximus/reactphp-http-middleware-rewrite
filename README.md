@@ -17,16 +17,16 @@ composer require wyrihaximus/react-http-middleware-rewrite
 
 # Usage
 
-While [`wyrihaximus/react-http-middleware-webroot-preload`](https://github.com/WyriHaximus/reactphp-http-middleware-webroot-preload) 
-is great for serving static files. It doesn't (and won't) support serving `/index.html` as `/`. Enter the rewrite middleware, 
+While [`wyrihaximus/react-http-middleware-webroot-preload`](https://github.com/WyriHaximus/reactphp-http-middleware-webroot-preload)
+is great for serving static files. It doesn't (and won't) support serving `/index.html` as `/`. Enter the rewrite middleware,
 underwater it will change the path from `/` to `/index.html`  so that the webroot preload middleware can serve `/index.html` as `/`.
 
 ```php
 $server = new Server([
     /** Other middleware */
-    new RewriteMiddleware([
-        '/' => '/index.html',
-    ]),
+    new RewriteMiddleware(
+        new Rewrite('/', '/index.html'),
+    ),
     new WebrootPreloadMiddleware(/** args */),
     /** Other middleware */
 ]);
