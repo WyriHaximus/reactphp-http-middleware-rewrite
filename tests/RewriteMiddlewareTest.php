@@ -1,22 +1,30 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace WyriHaximus\React\Tests\Http\Middleware;
 
-use ApiClients\Tools\TestUtilities\TestCase;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use React\Http\Io\ServerRequest;
+use React\Http\Message\Response;
+use React\Http\Message\ServerRequest;
+use WyriHaximus\AsyncTestUtilities\AsyncTestCase;
+use WyriHaximus\React\Http\Middleware\Rewrite;
 use WyriHaximus\React\Http\Middleware\RewriteMiddleware;
+
+use function React\Promise\resolve;
 
 /**
  * @internal
  */
-final class RewriteMiddlewareTest extends TestCase
+final class RewriteMiddlewareTest extends AsyncTestCase
 {
-    public function provideRewrites()
+    /**
+     * @return iterable<array<array<Rewrite>|string>>
+     */
+    public function provideRewrites(): iterable
     {
-        $rewrites = [
-            '/' => '/index.html',
-        ];
+        $rewrites = [new Rewrite('/', '/index.html')];
 
         yield [
             $rewrites,
@@ -32,15 +40,16 @@ final class RewriteMiddlewareTest extends TestCase
     }
 
     /**
+     * @param Rewrite[] $rewrites
+     *
      * @dataProvider provideRewrites
      */
     public function testRewrite(array $rewrites, string $path, string $expectedPath): void
     {
-        $passedPath = '';
-        (new RewriteMiddleware($rewrites))(new ServerRequest('GET', $path), function (ServerRequestInterface $request) use (&$passedPath): void {
-            $passedPath = $request->getUri()->getPath();
-        });
+        $response = $this->await(resolve((new RewriteMiddleware(...$rewrites))(new ServerRequest('GET', $path), static function (ServerRequestInterface $request): ResponseInterface {
+            return new Response(200, [], $request->getUri()->getPath());
+        })));
 
-        self::assertSame($expectedPath, $passedPath);
+        self::assertSame($expectedPath, (string) $response->getBody());
     }
 }
